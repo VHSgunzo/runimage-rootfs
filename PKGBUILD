@@ -1,21 +1,45 @@
 # Maintainer: VHSgunzo <vhsgunzo.github.io>
 
-pkgname='runimage-rootfs'
+pkgbase='runimage-rootfs'
+pkgname=(
+  'runimage-rootfs'
+  'runimage-rootfs-lwrun'
+  'runimage-rootfs-portarch'
+)
 pkgver='0.39.1'
 pkgrel='1'
-pkgbase="$pkgname"
 pkgdesc='Rootfs configuration for RunImage container'
 url="https://github.com/VHSgunzo/runimage-rootfs"
-arch=('any')
 license=('MIT')
-conflicts=(
-  runimage-rootfs-lwrun
-  runimage-rootfs-portarch
-)
-source=("$pkgname"::"git+file://$PWD")
+arch=('any')
+source=('rootfs.tar.gz')
 sha256sums=('SKIP')
 
-package() {
-    install -dm644 "$pkgdir/var"
-    cp -ar --no-preserve=ownership "$srcdir/$pkgname/rootfs" "$pkgdir/var/rootfs"
+package_runimage-rootfs() {
+    install='rootfs.install'
+    conflicts=(
+        'runimage-rootfs-lwrun'
+        'runimage-rootfs-portarch'
+    )
+    cp -arTf --no-preserve=ownership "$srcdir/rootfs/var" "$pkgdir/var"
+}
+
+package_runimage-rootfs-lwrun() {
+    install='rootfs-lwrun.install'
+    conflicts=(
+        'runimage-rootfs'
+        'runimage-rootfs-portarch'
+    )
+    cp -arTf --no-preserve=ownership "$srcdir/rootfs/var" "$pkgdir/var"
+    cp -arTf --no-preserve=ownership "$srcdir/rootfs-lwrun/var" "$pkgdir/var"
+}
+
+package_runimage-rootfs-portarch() {
+    install='rootfs-portarch.install'
+    conflicts=(
+        'runimage-rootfs'
+        'runimage-rootfs-lwrun'
+    )
+    cp -arTf --no-preserve=ownership "$srcdir/rootfs/var" "$pkgdir/var"
+    cp -arTf --no-preserve=ownership "$srcdir/rootfs-portarch/var" "$pkgdir/var"
 }

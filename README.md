@@ -1,2 +1,2 @@
 # runimage-rootfs
-Arch Linux rootfs for runimage
+Rootfs configuration for RunImage container
