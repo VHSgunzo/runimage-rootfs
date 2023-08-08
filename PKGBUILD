@@ -17,5 +17,5 @@ sha256sums=('SKIP')
 
 package() {
     install -dm644 "$pkgdir/var"
-    cp -ar --no-preserve=ownership "$srcdir/rootfs" "$pkgdir/var/rootfs"
+    cp -ar --no-preserve=ownership "$srcdir/$pkgname/rootfs" "$pkgdir/var/rootfs"
 }
