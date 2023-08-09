@@ -16,30 +16,30 @@ source=('rootfs.tar.gz')
 sha256sums=('SKIP')
 
 package_runimage-rootfs() {
-    install='rootfs.install'
+    # install='base.install'
     conflicts=(
         'runimage-rootfs-lwrun'
         'runimage-rootfs-portarch'
     )
-    cp -arTf --no-preserve=ownership "$srcdir/rootfs/var" "$pkgdir/var"
+    cp -arTf --no-preserve=ownership "$srcdir/base" "$pkgdir"
 }
 
 package_runimage-rootfs-lwrun() {
-    install='rootfs-lwrun.install'
+    # install='lwrun.install'
     conflicts=(
         'runimage-rootfs'
         'runimage-rootfs-portarch'
     )
-    cp -arTf --no-preserve=ownership "$srcdir/rootfs/var" "$pkgdir/var"
-    cp -arTf --no-preserve=ownership "$srcdir/rootfs-lwrun/var" "$pkgdir/var"
+    cp -arTf --no-preserve=ownership "$srcdir/base" "$pkgdir"
+    cp -arTf --no-preserve=ownership "$srcdir/lwrun" "$pkgdir"
 }
 
 package_runimage-rootfs-portarch() {
-    install='rootfs-portarch.install'
+    # install='portarch.install'
     conflicts=(
         'runimage-rootfs'
         'runimage-rootfs-lwrun'
     )
-    cp -arTf --no-preserve=ownership "$srcdir/rootfs/var" "$pkgdir/var"
-    cp -arTf --no-preserve=ownership "$srcdir/rootfs-portarch/var" "$pkgdir/var"
+    cp -arTf --no-preserve=ownership "$srcdir/base" "$pkgdir"
+    cp -arTf --no-preserve=ownership "$srcdir/portarch" "$pkgdir"
 }
