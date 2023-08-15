@@ -3,17 +3,13 @@ KEEP_OVERFS=1
 SANDBOX_NET=1
 OVERFS_ID=portarch
 SANDBOX_HOME_DIR="$SANDBOXHOMEDIR/portarch"
-[ "$RUNSRCNAME" == "portarch" ] && \
-    AUTORUN=rundesktop
-[[ -f "$RUNIMAGE" && ! -f "$RUNIMAGEDIR/runimage" ]] && \
-    ln -srf "$RUNIMAGE" "$RUNIMAGEDIR/runimage"
+[[ "$RUNSRCNAME" == "portarch" && ! -n "$1" ]] && \
+    AUTORUN=rundesktop||unset AUTORUN
 [ -x "$RUNROOTFS/usr/bin/qt5ct" ] && \
     SETENV_ARGS+=("--setenv" "QT_QPA_PLATFORMTHEME" "qt5ct")
 [ -x "$RUNROOTFS/usr/bin/startxfce4" ] && \
     SETENV_ARGS+=("--setenv" "XDG_CURRENT_DESKTOP" "XFCE" \
                     "--setenv" "DESKTOP_SESSION" "xfce")
-[[ -f "$RUNROOTFS/usr/share/gtk-2.0/gtkrc" && ! -f "$HOME/.config/gtk-2.0/gtkrc" && \
+[[ -f "$RUNROOTFS/etc/gtk-2.0/gtkrc" && ! -f "$HOME/.config/gtk-2.0/gtkrc" && \
 ! -f "$HOME/.config/gtkrc" && ! -f "$HOME/.gtkrc-2.0" ]] && \
-    SETENV_ARGS+=("--setenv" "GTK2_RC_FILES" "/usr/share/gtk-2.0/gtkrc")
-[ -d "$RUNROOTFS/etc/zsh/zshrc" ] && \
-    SETENV_ARGS+=("--setenv" "ZDOTDIR" "/etc/zsh/zshrc")
+    SETENV_ARGS+=("--setenv" "GTK2_RC_FILES" "/etc/gtk-2.0/gtkrc")

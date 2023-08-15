@@ -12,5 +12,5 @@ if [[ "$SANDBOX_HOME" != 1 && "$SANDBOX_HOME_DL" != 1 && ! -d "$SANDBOXHOMEDIR/l
 fi
 BWRAP_CAP+=("--cap-add" "CAP_SYS_ADMIN")
 SETENV_ARGS+=("--setenv" "GTK_THEME" "Adwaita:dark")
-SETENV_ARGS+=("--setenv" "GTK2_RC_FILES" "/usr/share/gtk-2.0/gtkrc")
+SETENV_ARGS+=("--setenv" "GTK2_RC_FILES" "/etc/gtk-2.0/gtkrc")
 SETENV_ARGS+=("--setenv" "QT_QPA_PLATFORMTHEME" "qt5ct")
