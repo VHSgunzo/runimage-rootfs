@@ -2,9 +2,14 @@ DONT_NOTIFY=1
 KEEP_OVERFS=1
 SANDBOX_NET=1
 OVERFS_ID=portarch
+ALLOW_RUNARGS_NAME=portarch
 SANDBOX_HOME_DIR="$SANDBOXHOMEDIR/portarch"
-[[ "$RUNSRCNAME" == "portarch" && ! -n "$1" ]] && \
-    AUTORUN=rundesktop||unset AUTORUN
+if [ "$RUNSRCNAME" == "portarch" ]
+    then
+        [ -n "$1" ] && \
+        unset AUTORUN||\
+        AUTORUN=rundesktop
+fi
 [ -x "$RUNROOTFS/usr/bin/qt5ct" ] && \
     SETENV_ARGS+=("--setenv" "QT_QPA_PLATFORMTHEME" "qt5ct")
 [ -x "$RUNROOTFS/usr/bin/startxfce4" ] && \

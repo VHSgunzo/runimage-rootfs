@@ -14,10 +14,12 @@ license=('MIT')
 arch=('any')
 source=('rootfs.tar.gz')
 sha256sums=('SKIP')
+provides=('filesystem')
 
 package_runimage-rootfs() {
     # install='base.install'
     conflicts=(
+        'filesystem'
         'runimage-rootfs-lwrun'
         'runimage-rootfs-portarch'
     )
@@ -27,6 +29,7 @@ package_runimage-rootfs() {
 package_runimage-rootfs-lwrun() {
     # install='lwrun.install'
     conflicts=(
+        'filesystem'
         'runimage-rootfs'
         'runimage-rootfs-portarch'
     )
@@ -37,6 +40,7 @@ package_runimage-rootfs-lwrun() {
 package_runimage-rootfs-portarch() {
     # install='portarch.install'
     conflicts=(
+        'filesystem'
         'runimage-rootfs'
         'runimage-rootfs-lwrun'
     )
