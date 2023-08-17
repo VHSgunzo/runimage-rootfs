@@ -2,7 +2,6 @@ DONT_NOTIFY=1
 KEEP_OVERFS=1
 SANDBOX_NET=1
 OVERFS_ID=portarch
-ALLOW_RUNARGS_NAME=portarch
 SANDBOX_HOME_DIR="$SANDBOXHOMEDIR/portarch"
 if [ "$RUNSRCNAME" == "portarch" ]
     then
