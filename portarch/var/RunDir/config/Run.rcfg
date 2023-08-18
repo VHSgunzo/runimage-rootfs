@@ -1,8 +1,11 @@
 DONT_NOTIFY=1
-KEEP_OVERFS=1
 SANDBOX_NET=1
-OVERFS_ID=portarch
 SANDBOX_HOME_DIR="$SANDBOXHOMEDIR/portarch"
+if [ -n "$RUNIMAGE" ]
+    then
+        KEEP_OVERFS=1
+        OVERFS_ID=portarch
+fi
 if [ "$RUNSRCNAME" == "portarch" ]
     then
         [ -n "$1" ] && \
