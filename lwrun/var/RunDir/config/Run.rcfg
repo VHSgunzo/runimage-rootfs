@@ -1,16 +1,34 @@
 DONT_NOTIFY=1
 SQFUSE_REMOUNT=1
 ENABLE_HOSTEXEC=1
+
 [ "$RUNSRCNAME" == 'lwrun' ] && \
     AUTORUN=lwrap
-if [[ "$SANDBOX_HOME" != 1 && "$SANDBOX_HOME_DL" != 1 && ! -d "$SANDBOXHOMEDIR/lwrap" && \
-    "$PORTABLE_HOME" != 1 && "$TMP_HOME" != 1 && "$TMP_HOME_DL" != 1 && ! -d "$PORTABLEHOMEDIR/lwrap" ]]
+
+if [[ "$SANDBOX_HOME" != 1 && \
+      "$SANDBOX_HOME_DL" != 1 && \
+      ! -d "$SANDBOXHOMEDIR/lwrap" && \
+      "$PORTABLE_HOME" != 1 && \
+      "$TMP_HOME" != 1 && \
+      "$TMP_HOME_DL" != 1 && \
+      ! -d "$PORTABLEHOMEDIR/lwrap" ]]
     then
         LW_DIR="$HOME/.local/share/LutrisWine"
         RUNCACHEDIR="$LW_DIR/bin/cache"
         NVIDIA_DRIVERS_DIR="$LW_DIR/bin/nvidia-drivers"
 fi
+
 BWRAP_CAP+=("--cap-add" "CAP_SYS_ADMIN")
-SETENV_ARGS+=("--setenv" "GTK_THEME" "Adwaita:dark")
+
+SETENV_ARGS+=(
+    "--setenv" "NO_AT_BRIDGE" "1"
+    "--setenv" "GDK_BACKEND" "x11"
+    "--setenv" "GTK_THEME" "Adwaita:dark"
+    "--setenv" "QT_QPA_PLATFORMTHEME" "qt5ct"
+)
+
+[[ -f "$RUNROOTFS/etc/gtk-2.0/gtkrc" && \
+ ! -f "$HOME/.config/gtk-2.0/gtkrc" && \
+ ! -f "$HOME/.config/gtkrc" && \
+ ! -f "$HOME/.gtkrc-2.0" ]] && \
 SETENV_ARGS+=("--setenv" "GTK2_RC_FILES" "/etc/gtk-2.0/gtkrc")
-SETENV_ARGS+=("--setenv" "QT_QPA_PLATFORMTHEME" "qt5ct")
