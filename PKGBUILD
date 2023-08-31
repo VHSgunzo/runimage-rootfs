@@ -7,14 +7,14 @@ pkgname=(
   'runimage-rootfs-portarch'
 )
 pkgver='0.39.1'
-pkgrel='1'
+pkgrel='2'
 pkgdesc='Rootfs configuration for RunImage container'
 url="https://github.com/VHSgunzo/runimage-rootfs"
 license=('MIT')
 arch=('any')
 source=('rootfs.tar.gz')
 sha256sums=('SKIP')
-provides=('filesystem')
+provides=('filesystem=2023.01.31')
 
 package_runimage-rootfs() {
     # install='base.install'
