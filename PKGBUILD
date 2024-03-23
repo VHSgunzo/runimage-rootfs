@@ -1,8 +1,8 @@
 # Maintainer: VHSgunzo <vhsgunzo.github.io>
 
 pkgname='runimage-rootfs'
-pkgver='0.39.1'
-pkgrel='3'
+pkgver='0.40.1'
+pkgrel='1'
 pkgdesc='Rootfs configuration for RunImage container'
 url="https://github.com/VHSgunzo/runimage-rootfs"
 license=('MIT')
@@ -18,5 +18,6 @@ conflicts=(
 # install='rootfs.install'
 
 package() {
+    find "${srcdir}" -type f -name '.keep' -exec rm -f {} \;
     cp -arTf --no-preserve=ownership "$srcdir/rootfs" "$pkgdir"
 }
