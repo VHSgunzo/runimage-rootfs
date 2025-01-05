@@ -10,6 +10,7 @@ arch=('x86_64' 'aarch64')
 source=('rootfs.tar' "mirrorlist-$CARCH" "pacman-$CARCH.conf")
 sha256sums=('SKIP' 'SKIP' 'SKIP')
 provides=('filesystem=2024.11.21')
+depends=('runimage-utils')
 conflicts=(
     'filesystem'
     'runimage-rootfs-lwrun'
