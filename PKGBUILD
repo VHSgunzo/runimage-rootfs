@@ -19,7 +19,7 @@ install='rootfs.install'
 
 package() {
     find "${srcdir}" -type f -name '.keep' -exec rm -f {} \;
-    install -Dm644 "mirrorlist-$CARCH" "$pkgdir/var/RunDir/rootfs/etc/pacman.d/mirrorlist"
-    install -Dm644 "pacman-$CARCH.conf" "$pkgdir/var/RunDir/rootfs/etc/pacman.conf"
+    install -Dm644 "mirrorlist-$CARCH" "$pkgdir/var/rootfs/etc/pacman.d/mirrorlist"
+    install -Dm644 "pacman-$CARCH.conf" "$pkgdir/var/rootfs/etc/pacman.conf"
     cp -arTf --no-preserve=ownership "$srcdir/rootfs" "$pkgdir"
 }
