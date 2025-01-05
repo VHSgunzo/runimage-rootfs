@@ -6,18 +6,20 @@ pkgrel='1'
 pkgdesc='Rootfs configuration for RunImage container'
 url="https://github.com/VHSgunzo/runimage-rootfs"
 license=('MIT')
-arch=('any')
-source=('rootfs.tar.gz')
-sha256sums=('SKIP')
-provides=('filesystem=2023.01.31')
+arch=('x86_64' 'aarch64')
+source=('rootfs.tar' "mirrorlist-$CARCH" "pacman-$CARCH.conf")
+sha256sums=('SKIP' 'SKIP' 'SKIP')
+provides=('filesystem=2024.11.21')
 conflicts=(
     'filesystem'
     'runimage-rootfs-lwrun'
     'runimage-rootfs-portarch'
 )
-# install='rootfs.install'
+install='rootfs.install'
 
 package() {
     find "${srcdir}" -type f -name '.keep' -exec rm -f {} \;
+    install -Dm644 "mirrorlist-$CARCH" "$pkgdir/var/RunDir/rootfs/etc/pacman.d/mirrorlist"
+    install -Dm644 "pacman-$CARCH.conf" "$pkgdir/var/RunDir/rootfs/etc/pacman.conf"
     cp -arTf --no-preserve=ownership "$srcdir/rootfs" "$pkgdir"
 }
