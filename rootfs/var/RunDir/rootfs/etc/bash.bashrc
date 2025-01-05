@@ -98,7 +98,8 @@ if [ "$EUID" != 0 ]
         alias pac='pacman'
 fi
 
-[ -r /usr/share/bash-completion/bash_completion   ] && . /usr/share/bash-completion/bash_completion
+[ -r /usr/share/bash-completion/bash_completion   ] && \
+    . /usr/share/bash-completion/bash_completion
 
 export GOPATH=$HOME/go
 #export GO111MODULE=off
