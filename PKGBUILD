@@ -22,5 +22,7 @@ package() {
     install -Dm644 "mirrorlist-$CARCH" "$pkgdir/var/rootfs/etc/pacman.d/mirrorlist"
     install -Dm644 "pacman-$CARCH.conf" "$pkgdir/var/rootfs/etc/pacman.conf"
     cp -arTf --no-preserve=ownership "$srcdir/rootfs" "$pkgdir"
-    [ "$CARCH" == 'aarch64' ] && rm -f "$pkgdir/var/rootfs/lib32"
+    if [ "$CARCH" == 'aarch64' ]
+        then rm -f "$pkgdir/var/rootfs/lib32"
+    fi
 }
