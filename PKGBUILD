@@ -2,7 +2,7 @@
 
 pkgname='runimage-rootfs'
 pkgver='0.40.1'
-pkgrel='1'
+pkgrel='2'
 pkgdesc='Rootfs configuration for RunImage container'
 url="https://github.com/VHSgunzo/runimage-rootfs"
 license=('MIT')
