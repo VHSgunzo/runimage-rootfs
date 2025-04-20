@@ -1,8 +1,8 @@
 # Maintainer: VHSgunzo <vhsgunzo.github.io>
 
 pkgname='runimage-rootfs'
-pkgver='0.40.1'
-pkgrel='2'
+pkgver='0.40.9'
+pkgrel='1'
 pkgdesc='Rootfs configuration for RunImage container'
 url="https://github.com/VHSgunzo/runimage-rootfs"
 license=('MIT')
