@@ -1,7 +1,7 @@
 # Maintainer: VHSgunzo <vhsgunzo.github.io>
 
 pkgname='runimage-rootfs'
-pkgver='0.42.1'
+pkgver='0.42.2'
 pkgrel='1'
 pkgdesc='Rootfs configuration for RunImage container'
 url="https://github.com/VHSgunzo/runimage-rootfs"
@@ -25,4 +25,5 @@ package() {
     if [ "$CARCH" == 'aarch64' ]
         then rm -f "$pkgdir/var/rootfs/lib32"
     fi
+    echo "$pkgver" > "$pkgdir/var/rootfs/.version"
 }
